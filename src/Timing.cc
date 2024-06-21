@@ -434,7 +434,7 @@ void Timing::makeEquivCells()
 void Timing::resetTiming()
 {
   sta::dbSta* sta = getSta();
-  sta->clear();
+  sta->networkChanged();
 }
 
 std::vector<odb::dbMaster*> Timing::equivCells(odb::dbMaster* master)
