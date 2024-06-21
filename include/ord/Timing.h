@@ -110,7 +110,8 @@ class Timing
   std::vector<sta::Corner*> getCorners();
   sta::Corner* cmdCorner();
   sta::Corner* findCorner(const char* name);
-
+  
+  void resetTiming();
   void makeEquivCells();
   std::vector<odb::dbMaster*> equivCells(odb::dbMaster* master);
 

@@ -431,6 +431,12 @@ void Timing::makeEquivCells()
   resizer->makeEquivCells();
 }
 
+void Timing::resetTiming()
+{
+  sta::dbSta* sta = getSta();
+  sta->clear();
+}
+
 std::vector<odb::dbMaster*> Timing::equivCells(odb::dbMaster* master)
 {
   sta::dbSta* sta = getSta();
