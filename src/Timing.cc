@@ -243,10 +243,9 @@ float Timing::getPinArrival(sta::Pin* sta_pin, RiseFall rf, MinMax minmax)
     const sta::RiseFall* clk_r = sta::RiseFall::rise();
     const sta::RiseFall* clk_f = sta::RiseFall::fall();
     const sta::RiseFall* arrive_hold = (rf == Rise) ? clk_r : clk_f;
-    d1 = getPinArrivalTime(nullptr, clk_r, vertex, arrive_hold);
-    d2 = getPinArrivalTime(defaultArrivalClock, clk_r, vertex, arrive_hold);
-    delay = (minmax == Max) ? std::max({d1, d2, delay})
-                            : std::min({d1, d2, delay});
+    d1 = getPinArrivalTime(defaultArrivalClock, clk_r, vertex, arrive_hold);
+    delay = (minmax == Max) ? std::max({d1, delay})
+                            : std::min({d1, delay});
     for (auto clk : findClocksMatching("*", false, false)) {
       d1 = getPinArrivalTime(clk, clk_r, vertex, arrive_hold);
       d2 = getPinArrivalTime(clk, clk_f, vertex, arrive_hold);
