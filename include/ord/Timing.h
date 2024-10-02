@@ -86,8 +86,8 @@ class Timing
   sta::ClockSeq findClocksMatching(const char* pattern,
                                    bool regexp,
                                    bool nocase);
-  float getPinArrival(odb::dbITerm* db_pin, RiseFall rf, MinMax minmax = Max);
-  float getPinArrival(odb::dbBTerm* db_pin, RiseFall rf, MinMax minmax = Max);
+  float getPinArrival(odb::dbITerm* db_pin, RiseFall rf, MinMax minmax = Max, bool clocked = true);
+  float getPinArrival(odb::dbBTerm* db_pin, RiseFall rf, MinMax minmax = Max, bool clocked = true);
   bool isTimeInf(float time);
 
   float getPinSlew(odb::dbITerm* db_pin, MinMax minmax = Max);
@@ -110,7 +110,8 @@ class Timing
   std::vector<sta::Corner*> getCorners();
   sta::Corner* cmdCorner();
   sta::Corner* findCorner(const char* name);
-
+  
+  void resetTiming();
   void makeEquivCells();
   std::vector<odb::dbMaster*> equivCells(odb::dbMaster* master);
 
@@ -121,7 +122,7 @@ class Timing
   std::array<sta::Vertex*, 2> vertices(const sta::Pin* pin);
   bool isEndpoint(sta::Pin* sta_pin);
   float getPinSlew(sta::Pin* sta_pin, MinMax minmax);
-  float getPinArrival(sta::Pin* sta_pin, RiseFall rf, MinMax minmax);
+  float getPinArrival(sta::Pin* sta_pin, RiseFall rf, MinMax minmax, bool clocked);
   float getPinSlack(sta::Pin* sta_pin, RiseFall rf, MinMax minmax);
   float slewAllCorners(sta::Vertex* vertex, sta::MinMax* minmax);
   std::vector<float> arrivalsClk(const sta::RiseFall* rf,
